@@ -130,21 +130,6 @@ DROP FUNCTION lifelines_test();
 
 
 --
--- import pattern
---
-create or replace function pattern_test() RETURNS TEXT AS $$
-# container: plc_python_shared
-from pattern.web import Twitter
-twitter = Twitter()
-return "Success!"
-$$ LANGUAGE plcontainer;
-
-SELECT pattern_test();
-
-DROP FUNCTION pattern_test();
-
-
---
 -- download spacy
 --
 create or replace function spacy_test() RETURNS TEXT AS $$
