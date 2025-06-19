@@ -80,9 +80,13 @@ typedef long long int int64;     /* == 64 bits */
 #define INT64_FORMAT "%lld"
 typedef float float4;
 typedef double float8;
+#ifndef __bool_true_false_are_defined /* from <stdbool.h> */
+#ifndef bool
 typedef char bool;
 #define true    ((bool) 1)
 #define false   ((bool) 0)
+#endif
+#endif
 /* End of extraction from c.h */
 
 extern int is_write_log(int elevel, int log_min_level);
