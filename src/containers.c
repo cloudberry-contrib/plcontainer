@@ -205,7 +205,7 @@ static void cleanup(const backendConnectionInfo *backend, const runtimeConnectio
 		/* Setting application name to let the system know it is us */
 		char psname[200];
 		snprintf(psname, sizeof(psname), "plcontainer cleaner %s", info->identity);
-		set_ps_display(psname, false);
+		set_ps_display(psname);
 
 		int res = 0;
 		int wait_times = 0;
