@@ -375,12 +375,8 @@ WARNING:  this is the warning message
 (1 row)
 
 \! psql -d ${PL_TESTDB} -c "select rlogging_fatal();"
-FATAL:  this is the fatal message
+ERROR:  this is the fatal message
 CONTEXT:  PLContainer function "rlogging_fatal"
-server closed the connection unexpectedly
-	This probably means the server terminated abnormally
-	before or while processing the request.
-connection to server was lost
 select rsetofint4();
  rsetofint4 
 ------------
