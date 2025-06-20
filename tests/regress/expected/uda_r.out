@@ -18,7 +18,7 @@ CREATE AGGREGATE rsum_cols(numeric, numeric) (
 	   INITCOND = 0 
 );
 create table tr (i int, j int);
-NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause -- Using column named 'i' as the Greenplum Database data distribution key for this table.
+NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause -- Using column named 'i' as the Apache Cloudberry data distribution key for this table.
 HINT:  The 'DISTRIBUTED BY' clause determines the distribution of data. Make sure column(s) chosen are the optimal data distribution key to minimize skew.
 insert into tr values(2,1),(4,8),(9,10),(10,24),(44,11);
 select rsum_cols(i,j) FROM tr;
@@ -38,13 +38,13 @@ execute on any;
 select * from public.test_spi_plcr2('select relname, relnatts from pg_class  where oid= 1259') as t(relname name, relnatts integer);
  relname  | relnatts 
 ----------+----------
- pg_class |       30
+ pg_class |       36
 (1 row)
 
 select * from public.test_spi_plcr2('select relnamespace, relname, relnatts from pg_class  where oid= 1259') as t(relnamespace text, relname name, relnatts integer);
  relnamespace | relname  | relnatts 
 --------------+----------+----------
- 11           | pg_class |       30
+ 11           | pg_class |       36
 (1 row)
 
 drop function public.test_spi_plcr2(text);
