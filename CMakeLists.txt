@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 project(plcontainer)
 
+find_package(CURL REQUIRED)
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Gpdb.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Distro.cmake)
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
@@ -102,8 +103,8 @@ ExternalProject_Add(
     INSTALL_DIR
     ${deps_INSTALL_DIR}
     CMAKE_ARGS
-    -D BUILD_SHARED_LIBS=OFF
-    -D BUILD_STATIC_LIBS=ON
+    -D BUILD_SHARED_LIBS=ON
+    -D BUILD_STATIC_LIBS=OFF
     -D CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
     -D CMAKE_INSTALL_PREFIX=${deps_INSTALL_DIR}
     -D DISABLE_EXTRA_LIBS=ON
@@ -126,8 +127,9 @@ target_include_directories(plcontainer PRIVATE
     ${deps_INSTALL_DIR}/include/libxml2)
 target_link_libraries(plcontainer PRIVATE
     ${deps_INSTALL_DIR}/lib/libxml2.a
-    ${deps_INSTALL_DIR}/lib/libjson-c.a
-    ${LIBPQ})
+    ${deps_INSTALL_DIR}/lib/libjson-c.so
+    ${LIBPQ} CURL::libcurl)
+
 add_dependencies(
     plcontainer
     libxml
