@@ -773,7 +773,10 @@ static int docker_inspect_string(char *buf, char **element, plcInspectionMode ty
 	backend_log(DEBUG1, "plcontainer: docker_inspect_string:%s", buf);
 	response = json_tokener_parse(buf);
 	if (response == NULL)
+	{
+		backend_log(WARNING, "failed to parse json: %s", buf);
 		return -1;
+	}
 	if (type == PLC_INSPECT_NAME) {
 		struct jsonc_json_object *nameidObj = NULL;
 		const char *namestr;

@@ -23,9 +23,10 @@ if(NOT DEFINED R_IMAGE_VERSION)
     set(R_IMAGE_VERSION ${PLCONTAINER_VERSION})
 endif()
 
-if(GP_MAJOR_VERSION VERSION_GREATER 6)
-    set(LIBPQ ${PG_LIB_DIR}/libpq.so)
-endif()
+set(LIBPQ ${PG_LIB_DIR}/libpq.so)
+
+# Print GP_MAJOR_VERSION for debugging
+message(STATUS "GP_MAJOR_VERSION = ${GP_MAJOR_VERSION}")
 
 configure_file(
     "${PROJECT_SOURCE_DIR}/src/config.h.in"
@@ -96,9 +97,9 @@ ExternalProject_Add(
 ExternalProject_Add(
     json-c
     URL
-    https://github.com/json-c/json-c/archive/refs/tags/json-c-0.16-20220414.tar.gz
+    https://github.com/json-c/json-c/archive/refs/tags/json-c-0.18-20240915.tar.gz
     URL_MD5
-    4f3288a5f14e0e6abe914213f41234e0
+    97f1a79151cae859983afbc46b40b92c
     DOWNLOAD_DIR
     ${DOWNLOAD_DIR}
     INSTALL_DIR
